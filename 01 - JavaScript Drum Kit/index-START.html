@@ -58,7 +58,20 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  window.addEventListener('keydown', function(e) {
+    // console.log(e.keyCode)
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+    // console.log(audio)
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+    // console.log(key)
+    key.classList.add('playing')
+    // key.classList.remove('playing')
+    // key.classList.toggle('playing')
 
+    if(!audio) return; // stop the function from running altogether if there's no audio for key
+    audio.currentTime = 0; // rewind to the start, so you can play same key without pause in audio
+    audio.play()
+  })
 </script>
 
 
