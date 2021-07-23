@@ -7,6 +7,7 @@
 </head>
 <body>
 
+  // try to add more rows of keys, to create a Phish jam session, complete with vocals, guitars and other sound effects
 
   <div class="keys">
     <div data-key="65" class="key">
@@ -58,7 +59,8 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  window.addEventListener('keydown', function(e) {
+
+  function playSound(e) {
     // console.log(e.keyCode)
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
     // console.log(audio)
@@ -71,7 +73,22 @@
     if(!audio) return; // stop the function from running altogether if there's no audio for key
     audio.currentTime = 0; // rewind to the start, so you can play same key without pause in audio
     audio.play()
-  })
+  }
+
+  function removeTransition(e) {
+    // console.log(e)
+    if (e.propertyName !== 'transform') return; //skip it if it's not a transform
+    // console.log(e.propertyName) // this console logs the word transform, because that is the property that is ending
+    // console.log(this) // this is always equal to whatever got called against it, so addEventListener got called against key
+    this.classList.remove('playing')
+  }
+
+  const keys = document.querySelectorAll('.key') // select the class of keys and put it in a variable
+
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition)) // removes the transform of the key
+
+  window.addEventListener('keydown', playSound) // add the event listener to a keydown event, and run the playSound function
+
 </script>
 
 

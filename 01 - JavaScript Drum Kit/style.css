@@ -1,6 +1,7 @@
 html {
   font-size: 10px;
-  background: url('./background.jpg') bottom center;
+  /* background: url('./background.jpg') bottom center; */
+  background: url('./background2.jpg') bottom center; // https://unsplash.com/photos/ZhQCZjr9fHo?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
   background-size: cover;
 }
 
